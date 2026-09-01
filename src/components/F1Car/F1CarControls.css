@@ -1,0 +1,124 @@
+.f1-car-controls {
+  position: fixed;
+  z-index: 1000;
+  right: clamp(1rem, 2.2vw, 2.25rem);
+  bottom: clamp(1rem, 2.2vw, 2.25rem);
+  display: grid;
+  justify-items: center;
+  gap: .5rem;
+  padding: .75rem;
+  color: var(--text);
+  background: color-mix(in srgb, var(--panel) 70%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .24);
+  backdrop-filter: blur(14px);
+  animation: f1-controls-enter .25s ease-out both;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+.f1-car-controls__label,
+.f1-car-controls__hint {
+  font-family: var(--mono);
+  font-size: .54rem;
+  letter-spacing: .12em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.f1-car-controls__label {
+  color: var(--accent-text);
+  font-weight: 700;
+}
+
+.f1-car-controls__hint {
+  color: var(--muted);
+  letter-spacing: .07em;
+}
+
+.f1-car-controls__pad {
+  display: grid;
+  grid-template: repeat(2, 2.7rem) / repeat(3, 2.7rem);
+  gap: .3rem;
+}
+
+.f1-car-controls__button {
+  display: grid;
+  width: 2.7rem;
+  height: 2.7rem;
+  padding: 0;
+  place-items: center;
+  color: var(--text);
+  background: color-mix(in srgb, var(--panel-strong) 82%, transparent);
+  border: 1px solid var(--line);
+  border-radius: .8rem;
+  cursor: pointer;
+  touch-action: none;
+  transition: color .15s ease, background .15s ease, border-color .15s ease, transform .15s ease;
+}
+
+.f1-car-controls__button--up {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.f1-car-controls__button--left {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.f1-car-controls__button--down {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.f1-car-controls__button--right {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.f1-car-controls__button:hover,
+.f1-car-controls__button:focus-visible {
+  color: var(--ink-static);
+  background: var(--accent);
+  border-color: var(--accent);
+  outline: none;
+}
+
+.f1-car-controls__button:active {
+  color: var(--ink-static);
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: scale(.9);
+}
+
+.f1-car-controls__button svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@keyframes f1-controls-enter {
+  from {
+    opacity: 0;
+    transform: translateY(.75rem) scale(.96);
+  }
+}
+
+@media (max-width: 980px) {
+  .f1-car-controls {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .f1-car-controls {
+    animation: none;
+  }
+}

@@ -12,7 +12,7 @@
 
 .f1-car.is-driving {
   position: fixed;
-  z-index: 900;
+  z-index: 1100;
   top: 0;
   left: 0;
   will-change: transform;

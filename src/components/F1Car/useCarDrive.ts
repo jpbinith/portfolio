@@ -5,7 +5,19 @@ const DRIVE_SPEED = 340
 const AUTO_SCROLL_SPEED = 760
 const EDGE_ZONE_RATIO = .28
 const MINIMUM_EDGE_ZONE = 220
-const CONTROL_KEYS = new Set(['KeyW', 'KeyA', 'KeyS', 'KeyD'])
+
+export type DriveDirection = 'up' | 'right' | 'down' | 'left'
+
+const KEY_DIRECTIONS: Partial<Record<string, DriveDirection>> = {
+  KeyW: 'up',
+  ArrowUp: 'up',
+  KeyD: 'right',
+  ArrowRight: 'right',
+  KeyS: 'down',
+  ArrowDown: 'down',
+  KeyA: 'left',
+  ArrowLeft: 'left',
+}
 
 type Position = {
   x: number
@@ -15,6 +27,7 @@ type Position = {
 export function useCarDrive(stageRef: RefObject<HTMLDivElement | null>, enabled: boolean) {
   const [isDriving, setIsDriving] = useState(false)
   const parkedBoundsRef = useRef<DOMRect | null>(null)
+  const activeDirectionsRef = useRef(new Set<DriveDirection>())
 
   const toggleDriving = useCallback(() => {
     if (!enabled) return
@@ -23,8 +36,17 @@ export function useCarDrive(stageRef: RefObject<HTMLDivElement | null>, enabled:
       parkedBoundsRef.current = stageRef.current?.getBoundingClientRect() ?? null
     }
 
+    activeDirectionsRef.current.clear()
     setIsDriving((current) => !current)
   }, [enabled, isDriving, stageRef])
+
+  const pressDirection = useCallback((direction: DriveDirection) => {
+    if (isDriving) activeDirectionsRef.current.add(direction)
+  }, [isDriving])
+
+  const releaseDirection = useCallback((direction: DriveDirection) => {
+    activeDirectionsRef.current.delete(direction)
+  }, [])
 
   useEffect(() => {
     const stage = stageRef.current
@@ -39,7 +61,7 @@ export function useCarDrive(stageRef: RefObject<HTMLDivElement | null>, enabled:
       x: parkedBounds.left + parkedBounds.width / 2,
       y: parkedBounds.top + parkedBounds.height / 2,
     }
-    const pressedKeys = new Set<string>()
+    const activeDirections = activeDirectionsRef.current
     const previousScrollBehavior = document.documentElement.style.scrollBehavior
     let heading = 0
     let animationFrame = 0
@@ -54,7 +76,7 @@ export function useCarDrive(stageRef: RefObject<HTMLDivElement | null>, enabled:
       stage.style.setProperty('--drive-heading', `${heading}deg`)
     }
 
-    const stopKeys = () => pressedKeys.clear()
+    const stopControls = () => activeDirections.clear()
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.code === 'Escape') {
@@ -63,23 +85,25 @@ export function useCarDrive(stageRef: RefObject<HTMLDivElement | null>, enabled:
         return
       }
 
-      if (!CONTROL_KEYS.has(event.code)) return
+      const direction = KEY_DIRECTIONS[event.code]
+      if (!direction) return
       event.preventDefault()
-      pressedKeys.add(event.code)
+      activeDirections.add(direction)
     }
 
     const handleKeyUp = (event: KeyboardEvent) => {
-      if (!CONTROL_KEYS.has(event.code)) return
+      const direction = KEY_DIRECTIONS[event.code]
+      if (!direction) return
       event.preventDefault()
-      pressedKeys.delete(event.code)
+      activeDirections.delete(direction)
     }
 
     const drive = (timestamp: number) => {
       const delta = Math.min((timestamp - previousTimestamp) / 1000, .04)
       previousTimestamp = timestamp
 
-      let horizontal = Number(pressedKeys.has('KeyD')) - Number(pressedKeys.has('KeyA'))
-      let vertical = Number(pressedKeys.has('KeyS')) - Number(pressedKeys.has('KeyW'))
+      let horizontal = Number(activeDirections.has('right')) - Number(activeDirections.has('left'))
+      let vertical = Number(activeDirections.has('down')) - Number(activeDirections.has('up'))
       const magnitude = Math.hypot(horizontal, vertical)
       const maximumScroll = Math.max(
         document.documentElement.scrollHeight - window.innerHeight,
@@ -133,20 +157,21 @@ export function useCarDrive(stageRef: RefObject<HTMLDivElement | null>, enabled:
     animationFrame = window.requestAnimationFrame(drive)
     window.addEventListener('keydown', handleKeyDown)
     window.addEventListener('keyup', handleKeyUp)
-    window.addEventListener('blur', stopKeys)
-    document.addEventListener('visibilitychange', stopKeys)
+    window.addEventListener('blur', stopControls)
+    document.addEventListener('visibilitychange', stopControls)
 
     return () => {
       window.cancelAnimationFrame(animationFrame)
       window.removeEventListener('keydown', handleKeyDown)
       window.removeEventListener('keyup', handleKeyUp)
-      window.removeEventListener('blur', stopKeys)
-      document.removeEventListener('visibilitychange', stopKeys)
+      window.removeEventListener('blur', stopControls)
+      document.removeEventListener('visibilitychange', stopControls)
+      activeDirections.clear()
       document.documentElement.style.scrollBehavior = previousScrollBehavior
       stage.style.removeProperty('transform')
       stage.style.removeProperty('--drive-heading')
     }
   }, [enabled, isDriving, stageRef])
 
-  return { isDriving, toggleDriving }
+  return { isDriving, toggleDriving, pressDirection, releaseDirection }
 }

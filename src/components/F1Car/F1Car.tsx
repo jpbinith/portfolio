@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
+import { F1CarControls } from './F1CarControls'
 import { useCarDrive } from './useCarDrive'
 import './F1Car.css'
 
@@ -37,7 +38,12 @@ export function F1Car() {
   const reducedMotion = useReducedMotion()
   const [isReady, setIsReady] = useState(false)
   const [hasError, setHasError] = useState(!modelUrl)
-  const { isDriving, toggleDriving } = useCarDrive(stageRef, isReady && !hasError)
+  const {
+    isDriving,
+    toggleDriving,
+    pressDirection,
+    releaseDirection,
+  } = useCarDrive(stageRef, isReady && !hasError)
 
   useEffect(() => {
     const stage = stageRef.current
@@ -178,7 +184,8 @@ export function F1Car() {
   }, [reducedMotion])
 
   return (
-    <div
+    <>
+      <div
       ref={stageRef}
       className={`f1-car${isReady ? ' is-ready' : ''}${hasError ? ' has-error' : ''}${isDriving ? ' is-driving' : ''}`}
       role="img"
@@ -229,6 +236,13 @@ export function F1Car() {
           Use <span>W A S D</span> keys to move around
         </p>
       )}
-    </div>
+      </div>
+      {isDriving && (
+        <F1CarControls
+          onPress={pressDirection}
+          onRelease={releaseDirection}
+        />
+      )}
+    </>
   )
 }
