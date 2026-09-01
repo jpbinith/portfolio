@@ -1,0 +1,3 @@
+.work-list {
+  margin-top: clamp(3rem, 7vw, 6rem);
+}

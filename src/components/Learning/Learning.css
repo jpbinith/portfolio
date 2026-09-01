@@ -1,0 +1,83 @@
+.learning-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: clamp(3rem, 7vw, 6rem);
+}
+
+.learning-card {
+  position: relative;
+  min-height: 27rem;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.learning-card--accent {
+  color: var(--ink-static);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.learning-type {
+  font-family: var(--mono);
+  font-size: .66rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  opacity: .75;
+}
+
+.learning-card h3 {
+  max-width: 600px;
+  margin: 5rem 0 1rem;
+  font-family: var(--display);
+  font-size: clamp(2rem, 4vw, 4rem);
+  letter-spacing: -.06em;
+  line-height: .95;
+  text-transform: uppercase;
+}
+
+.learning-card p {
+  max-width: 520px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.learning-card--accent p {
+  color: rgba(10, 10, 11, .7);
+}
+
+.learning-footer {
+  position: absolute;
+  right: clamp(1.5rem, 4vw, 3rem);
+  bottom: clamp(1.5rem, 4vw, 3rem);
+  left: clamp(1.5rem, 4vw, 3rem);
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: var(--mono);
+  font-size: .66rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.learning-link {
+  display: inline-flex;
+  padding-bottom: .25rem;
+  align-items: center;
+  gap: .5rem;
+  border-bottom: 1px solid currentColor;
+}
+
+@media (max-width: 680px) {
+  .learning-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .learning-card {
+    min-height: 26rem;
+  }
+}

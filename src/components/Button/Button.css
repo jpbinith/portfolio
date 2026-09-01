@@ -1,0 +1,60 @@
+.button {
+  --button-bg: var(--accent);
+  --button-color: var(--ink-static);
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  min-height: 3.5rem;
+  padding: .85rem 1.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+  overflow: hidden;
+  color: var(--button-color);
+  background: var(--button-bg);
+  border: 1px solid var(--button-bg);
+  border-radius: 999px;
+  font-size: .8rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  transition: transform .25s ease, box-shadow .25s ease, background-color .25s ease;
+}
+
+.button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(var(--accent-rgb), .18);
+}
+
+.button--ghost {
+  --button-bg: transparent;
+  --button-color: var(--text);
+  border-color: var(--line);
+}
+
+.button--ghost:hover {
+  border-color: var(--text);
+  box-shadow: none;
+}
+
+.icon-link {
+  display: inline-grid;
+  flex-shrink: 0;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  place-items: center;
+  transition: color .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.icon-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-3px) rotate(-4deg);
+}
+
+.icon-link svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}

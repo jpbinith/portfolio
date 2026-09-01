@@ -1,0 +1,37 @@
+.section-kicker {
+  display: inline-flex;
+  margin: 0 0 1.4rem;
+  align-items: center;
+  gap: .65rem;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.section-kicker::before {
+  content: '';
+  width: 1.75rem;
+  height: 1px;
+  background: currentColor;
+}
+
+.section-title {
+  max-width: 980px;
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(2.65rem, 6.4vw, 6.6rem);
+  font-weight: 900;
+  letter-spacing: -.065em;
+  line-height: .93;
+  text-transform: uppercase;
+}
+
+.section-lead {
+  max-width: 710px;
+  margin: 2rem 0 0 auto;
+  color: var(--muted);
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+}

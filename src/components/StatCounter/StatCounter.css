@@ -1,0 +1,27 @@
+.stat {
+  min-height: 11rem;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.stat-value {
+  display: block;
+  margin-bottom: .5rem;
+  color: var(--accent);
+  font-family: var(--display);
+  font-size: clamp(2.6rem, 5vw, 5rem);
+  letter-spacing: -.07em;
+  line-height: 1;
+}
+
+.stat-label {
+  color: var(--muted);
+  font-size: .83rem;
+}
+
+@media (max-width: 680px) {
+  .stat {
+    min-height: 9rem;
+  }
+}

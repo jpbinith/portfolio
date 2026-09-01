@@ -1,32 +1,22 @@
-# React + TypeScript + Vite
+# Binith Jayasinghe Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A component-based React and TypeScript portfolio built with Vite.
 
-Currently, two official plugins are available:
+## Development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Use `npm run build` for a production build and `npm run lint` for static analysis.
+
+## Structure
+
+- `src/components` contains a dedicated component and stylesheet for each page section.
+- `src/data/portfolio.ts` contains repeatable portfolio content.
+- `src/context` owns the persisted dark/light theme.
+- `src/styles/theme.css` defines design tokens; `global.css` contains the base layout and shared utilities.
+- `src/hooks` contains reduced-motion-aware reveal behavior.
+
+Add `Binith-Jayasinghe-CV.pdf` to `public/` to enable the two CV download links.
