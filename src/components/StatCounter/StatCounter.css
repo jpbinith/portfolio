@@ -8,7 +8,7 @@
 .stat-value {
   display: block;
   margin-bottom: .5rem;
-  color: var(--accent);
+  color: var(--accent-text);
   font-family: var(--display);
   font-size: clamp(2.6rem, 5vw, 5rem);
   letter-spacing: -.07em;

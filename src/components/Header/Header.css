@@ -74,7 +74,7 @@
   bottom: 0;
   left: 0;
   height: 1px;
-  background: var(--accent);
+  background: var(--accent-text);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform .25s ease;

@@ -113,7 +113,7 @@
 
 .map-node:hover {
   z-index: 2;
-  border-color: var(--accent);
+  border-color: var(--accent-text);
   transform: scale(1.08);
 }
 

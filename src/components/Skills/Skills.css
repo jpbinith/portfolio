@@ -45,6 +45,18 @@
   font-size: .93rem;
 }
 
+:root[data-theme='light'] .skill-group {
+  background: rgba(240, 238, 225, .78);
+}
+
+:root[data-theme='light'] .skill-group:nth-child(3n + 2) {
+  background: rgba(144, 124, 255, .07);
+}
+
+:root[data-theme='light'] .skill-group:nth-child(3n) {
+  background: rgba(var(--accent-rgb), .1);
+}
+
 @media (max-width: 980px) {
   .skills-panel {
     grid-template-columns: repeat(2, minmax(0, 1fr));

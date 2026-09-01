@@ -8,7 +8,7 @@ html {
   min-height: 100%;
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: var(--accent) var(--ink);
+  scrollbar-color: var(--accent-text) var(--ink);
 }
 
 body {
@@ -16,10 +16,8 @@ body {
   min-height: 100%;
   margin: 0;
   color: var(--text);
-  background:
-    radial-gradient(circle at 9% 3%, rgba(144, 124, 255, .09), transparent 28rem),
-    radial-gradient(circle at 92% 24%, rgba(var(--accent-rgb), .06), transparent 30rem),
-    var(--ink);
+  background: var(--page-background);
+  background-attachment: fixed;
   font-family: var(--body);
   font-size: 16px;
   line-height: 1.6;
@@ -32,7 +30,7 @@ body::before {
   position: fixed;
   z-index: 999;
   inset: 0;
-  opacity: .045;
+  opacity: var(--noise-opacity);
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
   mix-blend-mode: soft-light;
   pointer-events: none;
@@ -84,8 +82,15 @@ img {
 
 .outline-text {
   color: transparent;
-  -webkit-text-stroke: 1px var(--muted);
-  opacity: .75;
+  -webkit-text-stroke: 1px var(--outline);
+}
+
+:root[data-theme='light'] .outline-text {
+  color: rgba(10, 10, 11, .025);
+}
+
+:root[data-theme='light'] .section {
+  padding-block: clamp(5.5rem, 9vw, 8rem);
 }
 
 .reveal {
@@ -100,7 +105,7 @@ img {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-text);
   outline-offset: 4px;
 }
 

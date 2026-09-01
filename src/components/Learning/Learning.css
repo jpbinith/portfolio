@@ -73,6 +73,15 @@
   border-bottom: 1px solid currentColor;
 }
 
+:root[data-theme='light'] .learning-card {
+  box-shadow: 0 22px 64px rgba(45, 39, 24, .13);
+}
+
+:root[data-theme='light'] .learning-card:not(.learning-card--accent) {
+  background:
+    linear-gradient(145deg, rgba(240, 238, 225, .98), rgba(214, 219, 208, .9));
+}
+
 @media (max-width: 680px) {
   .learning-grid {
     grid-template-columns: 1fr;

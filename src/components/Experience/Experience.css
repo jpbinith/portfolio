@@ -32,7 +32,7 @@
 }
 
 .timeline-date {
-  color: var(--accent);
+  color: var(--accent-text);
   font-family: var(--mono);
   font-size: .68rem;
   letter-spacing: .06em;
@@ -57,6 +57,32 @@
 .timeline-description {
   margin: 0;
   color: var(--muted);
+}
+
+:root[data-theme='light'] #experience {
+  background:
+    linear-gradient(135deg, rgba(144, 124, 255, .09), rgba(238, 236, 223, .8)),
+    var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 2.5rem;
+  box-shadow: 0 24px 80px rgba(45, 39, 24, .08);
+}
+
+:root[data-theme='light'] .timeline-item {
+  padding-inline: 1.35rem;
+  background: rgba(240, 238, 225, .62);
+}
+
+:root[data-theme='light'] .timeline-item:nth-child(even) {
+  background: rgba(var(--accent-rgb), .09);
+}
+
+:root[data-theme='light'] .timeline-date {
+  align-self: start;
+  justify-self: start;
+  padding: .35rem .55rem;
+  background: rgba(var(--accent-rgb), .22);
+  border-radius: 999px;
 }
 
 @media (max-width: 980px) {
