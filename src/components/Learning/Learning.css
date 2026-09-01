@@ -7,6 +7,8 @@
 
 .learning-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
   min-height: 27rem;
   padding: clamp(1.5rem, 4vw, 3rem);
   overflow: hidden;
@@ -50,12 +52,11 @@
 }
 
 .learning-footer {
-  position: absolute;
-  right: clamp(1.5rem, 4vw, 3rem);
-  bottom: clamp(1.5rem, 4vw, 3rem);
-  left: clamp(1.5rem, 4vw, 3rem);
   display: flex;
-  align-items: end;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 2.5rem;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 1rem;
   font-family: var(--mono);
