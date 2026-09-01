@@ -40,6 +40,13 @@ export function Contact() {
             <a href="#top">Back to top ↑</a>
           </div>
         </footer>
+        <p className="model-credit">
+          3D model based on{' '}
+          <a href="https://sketchfab.com/3d-models/ferrari-f1-75-06454e0f23a44fcdabcc7808aee6caf9" target="_blank" rel="noopener noreferrer">
+            “Ferrari F1-75” by Sketcher
+          </a>{' '}
+          · <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC 4.0</a>
+        </p>
       </div>
     </section>
   )

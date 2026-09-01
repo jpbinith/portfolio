@@ -1,0 +1,322 @@
+.f1-car {
+  position: absolute;
+  z-index: 1;
+  top: 2rem;
+  left: calc((100vw - 100%) / -2 - 14rem);
+  width: clamp(24rem, 36vw, 42rem);
+  height: clamp(11rem, 18vw, 18rem);
+  overflow: visible;
+  pointer-events: none;
+  filter: drop-shadow(0 26px 35px rgba(0, 0, 0, .25));
+}
+
+.f1-car.is-driving {
+  position: fixed;
+  z-index: 900;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
+
+.f1-car.is-driving .f1-car-visual {
+  transform: rotate(var(--drive-heading, 0deg));
+}
+
+.f1-car.is-driving .f1-car-ground-glow {
+  opacity: .9;
+}
+
+.f1-car.is-driving .f1-car-exhaust::after {
+  height: 7rem;
+}
+
+.f1-car.is-driving .f1-car-trail {
+  animation-duration: .75s;
+}
+
+.f1-car-visual {
+  position: absolute;
+  inset: 0;
+  transform-origin: center;
+  transition: transform .1s linear;
+}
+
+.f1-car::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 12% 6%;
+  opacity: .5;
+  background:
+    radial-gradient(ellipse, rgba(var(--accent-rgb), .13), transparent 65%),
+    repeating-linear-gradient(115deg, transparent 0 2rem, rgba(var(--accent-rgb), .055) 2rem 2.05rem);
+  filter: blur(7px);
+}
+
+.f1-car-effects {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  opacity: 0;
+  mix-blend-mode: screen;
+  transition: opacity .7s ease .25s;
+}
+
+.f1-car.is-ready .f1-car-effects {
+  opacity: 1;
+}
+
+.f1-car-ground-glow {
+  position: absolute;
+  top: 18%;
+  left: 45%;
+  width: 10%;
+  height: 64%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(var(--accent-rgb), .22), rgba(var(--accent-rgb), .05) 48%, transparent 74%);
+  filter: blur(11px);
+  transform-origin: center;
+  animation: f1-ground-pulse 1.8s ease-in-out infinite;
+}
+
+.f1-car-exhaust {
+  position: absolute;
+  z-index: 3;
+  top: 9%;
+  left: 50%;
+  width: .42rem;
+  height: .42rem;
+  border-radius: 50%;
+  background: #fff5d6;
+  box-shadow:
+    0 0 .4rem .15rem rgba(255, 245, 214, .95),
+    0 -.4rem .9rem .34rem rgba(255, 91, 34, .9),
+    0 -1.1rem 1.75rem .55rem rgba(255, 48, 24, .48);
+  transform: translate(-50%, -50%);
+  animation: f1-exhaust-flicker .16s steps(2, end) infinite;
+}
+
+.f1-car-exhaust::after {
+  content: '';
+  position: absolute;
+  right: auto;
+  bottom: .15rem;
+  left: 50%;
+  width: 1.25rem;
+  height: 5.4rem;
+  border-radius: 50%;
+  background: linear-gradient(0deg, rgba(255, 150, 62, .72), rgba(255, 48, 24, .24) 46%, transparent 90%);
+  filter: blur(6px);
+  transform: translateX(-50%) scaleY(.82);
+  transform-origin: center bottom;
+  animation: f1-heat-plume .42s ease-in-out infinite alternate;
+}
+
+.f1-car-trail {
+  position: absolute;
+  top: -11%;
+  width: 2px;
+  height: 27%;
+  border-radius: 999px;
+  opacity: 0;
+  background: linear-gradient(180deg, transparent, rgba(var(--accent-rgb), .4) 58%, rgba(255, 96, 40, .88));
+  filter: blur(.2px);
+  transform-origin: center bottom;
+  animation: f1-speed-trail 1.8s ease-out infinite;
+}
+
+.f1-car-trail--one {
+  left: 47%;
+}
+
+.f1-car-trail--two {
+  left: 50%;
+  height: 23%;
+  animation-delay: .58s;
+}
+
+.f1-car-trail--three {
+  left: 53%;
+  height: 18%;
+  animation-delay: 1.12s;
+}
+
+.f1-car canvas {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity .7s ease;
+}
+
+.f1-car.is-ready canvas {
+  opacity: .92;
+}
+
+.f1-car-status {
+  position: absolute;
+  bottom: .8rem;
+  left: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: .58rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  transition: opacity .3s ease;
+}
+
+.f1-car-status span {
+  width: .45rem;
+  height: .45rem;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 .25rem rgba(var(--accent-rgb), .1);
+  animation: car-loading 1.3s ease-in-out infinite;
+}
+
+.f1-car.is-ready .f1-car-status {
+  opacity: 0;
+}
+
+.f1-car.has-error .f1-car-status {
+  opacity: 1;
+}
+
+.f1-car-drive-toggle {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% + .35rem);
+  left: 50%;
+  display: grid;
+  width: 2.65rem;
+  height: 2.65rem;
+  padding: 0;
+  place-items: center;
+  color: var(--ink-static);
+  background: var(--accent);
+  border: 1px solid rgba(var(--accent-rgb), .7);
+  border-radius: 50%;
+  box-shadow: 0 0 0 .35rem rgba(var(--accent-rgb), .1), 0 12px 30px rgba(0, 0, 0, .22);
+  cursor: pointer;
+  pointer-events: auto;
+  transform: translateX(-50%);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.f1-car-drive-prompt {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% + 3.55rem);
+  left: 50%;
+  margin: 0;
+  padding: .35rem .58rem;
+  color: var(--muted);
+  background: color-mix(in srgb, var(--panel) 64%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: .52rem;
+  letter-spacing: .07em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateX(-15%);
+  backdrop-filter: blur(8px);
+}
+
+.f1-car-drive-prompt span {
+  color: var(--accent-text);
+  font-weight: 700;
+}
+
+.f1-car-drive-toggle:hover,
+.f1-car-drive-toggle:focus-visible {
+  box-shadow: 0 0 0 .55rem rgba(var(--accent-rgb), .15), 0 15px 34px rgba(0, 0, 0, .28);
+  outline: none;
+  transform: translateX(-50%) scale(1.08);
+}
+
+.f1-car-drive-toggle svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
+
+.f1-car.is-driving .f1-car-drive-toggle {
+  top: -2.8rem;
+  color: var(--text);
+  background: color-mix(in srgb, var(--panel) 42%, transparent);
+  border-color: var(--line);
+  box-shadow: 0 0 0 .3rem color-mix(in srgb, var(--panel) 18%, transparent), 0 12px 30px rgba(0, 0, 0, .18);
+  transform: translateX(-50%) scale(1.15);
+  backdrop-filter: blur(10px);
+}
+
+.f1-car.is-driving .f1-car-drive-toggle:hover,
+.f1-car.is-driving .f1-car-drive-toggle:focus-visible {
+  background: color-mix(in srgb, var(--panel) 62%, transparent);
+  border-color: var(--accent-text);
+  transform: translateX(-50%) scale(1.25);
+}
+
+@keyframes car-loading {
+  50% { opacity: .25; transform: scale(.7); }
+}
+
+@keyframes f1-ground-pulse {
+  50% { opacity: .7; transform: scaleY(1.08); }
+}
+
+@keyframes f1-exhaust-flicker {
+  50% { opacity: .7; transform: translate(-50%, -50%) scale(.84); }
+}
+
+@keyframes f1-heat-plume {
+  to { opacity: .68; transform: translateX(-50%) scaleY(1.08) scaleX(.72); }
+}
+
+@keyframes f1-speed-trail {
+  0% { opacity: 0; transform: translateY(.8rem) scaleY(.2); }
+  24% { opacity: .7; }
+  100% { opacity: 0; transform: translateY(-2.2rem) scaleY(1.05); }
+}
+
+:root[data-theme='light'] .f1-car {
+  filter: drop-shadow(0 28px 34px rgba(45, 39, 24, .22));
+}
+
+:root[data-theme='light'] .f1-car-effects {
+  mix-blend-mode: normal;
+}
+
+@media (max-width: 1180px) {
+  .f1-car {
+    width: 34rem;
+    opacity: .82;
+  }
+}
+
+@media (max-width: 980px) {
+  .f1-car {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .f1-car-status span,
+  .f1-car-ground-glow,
+  .f1-car-exhaust,
+  .f1-car-exhaust::after,
+  .f1-car-trail {
+    animation: none;
+  }
+
+  .f1-car-trail {
+    display: none;
+  }
+}

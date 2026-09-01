@@ -2,6 +2,7 @@ import { CV_DOWNLOAD_NAME, CV_URL } from '../../config/site'
 import { useReveal } from '../../hooks/useReveal'
 import { Button, IconLink } from '../Button/Button'
 import { ArrowIcon, GitHubIcon, LinkedInIcon } from '../Button/Icons'
+import { F1CarLoader } from '../F1Car/F1CarLoader'
 import { SystemMap } from '../SystemMap/SystemMap'
 import './Hero.css'
 
@@ -11,7 +12,8 @@ export function Hero() {
 
   return (
     <section className="hero shell" id="top" aria-labelledby="hero-title">
-      <div>
+      <F1CarLoader />
+      <div className="hero-inner">
         <div className="hero-grid">
           <div ref={contentRef} className={`hero-content ${contentRevealClass}`}>
             <div className="availability">

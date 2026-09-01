@@ -1,9 +1,16 @@
 .hero {
+  position: relative;
   display: grid;
   min-height: 100svh;
   padding-top: 8rem;
   padding-bottom: 3rem;
   align-items: end;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
 }
 
 .hero-grid {
