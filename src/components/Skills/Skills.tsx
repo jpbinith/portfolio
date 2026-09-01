@@ -19,8 +19,13 @@ export function Skills() {
 
   return (
     <section className="section shell" id="skills" aria-labelledby="skills-title">
-      <SectionHeading index="04" kicker="Capabilities" id="skills-title">
-        The engineering <span className="outline-text">toolkit.</span>
+      <SectionHeading
+        index="04"
+        kicker="Role fit"
+        id="skills-title"
+        lead="A practical stack spanning model-powered features, backend architecture, frontend delivery, data and cloud operations."
+      >
+        Ready for AI and <span className="outline-text">software teams.</span>
       </SectionHeading>
 
       <div ref={ref} className={`skills-panel ${revealClassName}`}>

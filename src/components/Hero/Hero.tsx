@@ -1,3 +1,4 @@
+import { CV_DOWNLOAD_NAME, CV_URL } from '../../config/site'
 import { useReveal } from '../../hooks/useReveal'
 import { Button, IconLink } from '../Button/Button'
 import { ArrowIcon, GitHubIcon, LinkedInIcon } from '../Button/Icons'
@@ -15,20 +16,21 @@ export function Hero() {
           <div ref={contentRef} className={`hero-content ${contentRevealClass}`}>
             <div className="availability">
               <span className="availability-dot" />
-              Melbourne, Australia · Full work rights
+              Open to opportunities · Full Australian work rights
             </div>
             <h1 id="hero-title">
-              <span className="name">Binith</span>
-              <span className="role">Builds <span className="outline-text">what’s next.</span></span>
+              <span className="name">AI +</span>
+              <span className="role role--software">Software</span>
+              <span className="role outline-text">Engineer.</span>
             </h1>
             <p className="hero-copy">
-              AI Software Engineer building <strong>intelligent products</strong>,{' '}
-              <strong>high-scale backends</strong> and <strong>polished full-stack experiences</strong>{' '}
-              that solve practical business problems.
+              Melbourne-based engineer with <strong>4+ years of experience</strong> delivering{' '}
+              <strong>production AI workflows</strong>, <strong>scalable backend systems</strong> and{' '}
+              <strong>full-stack products</strong> across financial services and e-commerce.
             </p>
             <div className="hero-actions">
-              <Button href="#work">Explore selected work <ArrowIcon /></Button>
-              <Button variant="ghost" href="/Binith-Jayasinghe-CV.pdf" download>Download CV</Button>
+              <Button href="#work">View selected work <ArrowIcon /></Button>
+              <Button variant="ghost" href={CV_URL} download={CV_DOWNLOAD_NAME}>Download CV</Button>
               <IconLink
                 href="https://www.linkedin.com/in/binith-jayasinghe/"
                 target="_blank"
@@ -52,8 +54,8 @@ export function Hero() {
         </div>
 
         <div ref={footRef} className={`hero-foot ${footRevealClass}`}>
-          <span>Software Engineer · Backend · Full-stack · AI</span>
-          <span className="scroll-cue"><span />Scroll to explore</span>
+          <span>Seeking AI Engineer · Software Engineer roles</span>
+          <span className="scroll-cue"><span />Experience & skills</span>
         </div>
       </div>
     </section>

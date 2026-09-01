@@ -25,14 +25,14 @@ export function Experience() {
   return (
     <section className="section shell" id="experience" aria-labelledby="experience-title">
       <SectionHeading index="03" kicker="Experience" id="experience-title">
-        From code to <span className="outline-text">outcome.</span>
+        A track record of <span className="outline-text">delivery.</span>
       </SectionHeading>
 
       <div className="experience-wrap">
         <aside ref={noteRef} className={`experience-note ${noteRevealClass}`}>
-          <strong>Four roles. One through-line.</strong>
-          Building dependable systems, making complexity understandable and helping teams deliver
-          meaningful software.
+          <strong>Where I add value.</strong>
+          Teams that need an engineer who can move between AI features, backend architecture and
+          product delivery—and turn prototypes into dependable production systems.
         </aside>
 
         <div className="timeline">

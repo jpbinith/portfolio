@@ -80,7 +80,7 @@ export function Header() {
           >
             {theme === 'dark' ? <MoonIcon /> : <SunIcon />}
           </button>
-          <Button variant="ghost" href="#contact">Let’s talk</Button>
+          <Button variant="ghost" href="#contact">Contact me</Button>
           <button
             className="menu-toggle"
             type="button"

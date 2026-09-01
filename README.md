@@ -19,4 +19,4 @@ Use `npm run build` for a production build and `npm run lint` for static analysi
 - `src/styles/theme.css` defines design tokens; `global.css` contains the base layout and shared utilities.
 - `src/hooks` contains reduced-motion-aware reveal behavior.
 
-Add `Binith-Jayasinghe-CV.pdf` to `public/` to enable the two CV download links.
+The downloadable CV is sourced from `src/assets/CV/Binith_Jayasinghe.pdf` and bundled by Vite.

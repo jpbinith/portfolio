@@ -68,6 +68,10 @@
   color: var(--accent);
 }
 
+.hero h1 .role--software {
+  font-size: .88em;
+}
+
 .hero-copy {
   max-width: 720px;
   margin: 2rem 0 0;
@@ -132,7 +136,7 @@
   }
 
   .hero h1 {
-    font-size: clamp(3.2rem, 18vw, 5.6rem);
+    font-size: clamp(3rem, 15.5vw, 5.6rem);
   }
 
   .hero-foot {

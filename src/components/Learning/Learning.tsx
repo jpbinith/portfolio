@@ -30,8 +30,13 @@ function LearningCard({ item }: { item: LearningItem }) {
 export function Learning() {
   return (
     <section className="section shell" id="learning" aria-labelledby="learning-title">
-      <SectionHeading index="05" kicker="Learning & research" id="learning-title">
-        Curiosity, made <span className="outline-text">concrete.</span>
+      <SectionHeading
+        index="05"
+        kicker="Education & research"
+        id="learning-title"
+        lead="Formal AI training backed by published research and hands-on production engineering experience."
+      >
+        AI foundations, <span className="outline-text">applied.</span>
       </SectionHeading>
 
       <div className="learning-grid">

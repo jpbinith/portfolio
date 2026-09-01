@@ -11,23 +11,24 @@ export function About() {
     <section className="section shell" id="about" aria-labelledby="about-title">
       <div className="about-grid">
         <div className="about-sticky">
-          <SectionHeading index="01" kicker="About" id="about-title">
-            Engineering with <span className="outline-text">purpose.</span>
+          <SectionHeading index="01" kicker="Professional profile" id="about-title">
+            AI depth. <span className="outline-text">Software breadth.</span>
           </SectionHeading>
         </div>
 
         <div ref={copyRef} className={copyRevealClass}>
           <p className="about-copy">
-            I turn complex requirements into reliable software.{' '}
+            I’m an AI and software engineer who takes products from an unclear problem to reliable
+            production software.{' '}
             <span className="muted">
-              My work sits at the intersection of AI, backend architecture and user-facing products.
+              I combine applied AI with strong backend and full-stack engineering.
             </span>
           </p>
           <p className="about-detail">
-            With 4+ years of experience and a Master of Artificial Intelligence with Distinction from
-            RMIT, I’ve delivered production platforms in financial services, e-commerce, manufacturing
-            and telecommunications. I care about the entire journey—from a model’s output to the API,
-            interface, deployment pipeline and person relying on it.
+            I can design LLM and RAG workflows, build APIs and data integrations, deliver usable
+            interfaces, and own cloud deployment. Backed by 4+ years of industry experience and a
+            Master of Artificial Intelligence with Distinction from RMIT, I’ve shipped systems across
+            financial services, e-commerce, manufacturing and telecommunications.
           </p>
 
           <div className="stats">

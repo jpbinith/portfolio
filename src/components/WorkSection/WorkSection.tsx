@@ -8,11 +8,11 @@ export function WorkSection() {
     <section className="section shell" id="work" aria-labelledby="work-title">
       <SectionHeading
         index="02"
-        kicker="Selected work"
+        kicker="Relevant work"
         id="work-title"
-        lead="A selection of production challenges spanning intelligent document processing, financial platforms, commerce and operational automation."
+        lead="Evidence of what I would bring to an AI Engineer or Software Engineer role: production AI, backend platforms, distributed systems and operational automation."
       >
-        Systems built to <span className="outline-text">perform.</span>
+        Production work. <span className="outline-text">Real outcomes.</span>
       </SectionHeading>
 
       <div className="work-list">

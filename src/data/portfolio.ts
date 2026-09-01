@@ -79,7 +79,7 @@ export const experience: ExperienceItem[] = [
     company: 'Triple A Super',
     location: 'Melbourne',
     description:
-      'Building production AI, backend integrations and full-stack financial platforms; owning deployments and operational support across Docker, Nginx and CI/CD.',
+      'Building production LLM, OCR and RAG workflows alongside Python and Django APIs, financial-data integrations and full-stack platform features; owning delivery across Docker, Nginx and CI/CD.',
   },
   {
     period: 'Mar 2023 — Feb 2024',
@@ -87,7 +87,7 @@ export const experience: ExperienceItem[] = [
     company: 'SyscoLabs',
     location: 'Sri Lanka',
     description:
-      'Delivered high-traffic commerce features in a distributed microservices environment and mentored junior engineers across implementation, debugging and code quality.',
+      'Delivered Java, Spring Boot, Node.js, React and GraphQL features for a high-traffic distributed commerce platform, while mentoring junior engineers across implementation, debugging and code quality.',
   },
   {
     period: 'Sep 2021 — Mar 2023',
@@ -95,7 +95,7 @@ export const experience: ExperienceItem[] = [
     company: 'FcodeLabs',
     location: 'Sri Lanka',
     description:
-      'Created APIs, integrations, interfaces and automation for an enterprise production platform, working directly with client stakeholders and guiding junior developers.',
+      'Built NestJS and GraphQL APIs, Angular interfaces, AWS services and OCR automation for an enterprise production platform, working directly with stakeholders and guiding junior developers.',
   },
   {
     period: 'Feb 2021 — Sep 2021',
@@ -103,7 +103,7 @@ export const experience: ExperienceItem[] = [
     company: 'Axiata Digital Labs',
     location: 'Sri Lanka',
     description:
-      'Developed Java and Spring Boot services, REST APIs and third-party integrations while contributing to the transition from monolithic workflows to scalable microservices.',
+      'Developed Java and Spring Boot services, REST APIs and third-party integrations while helping move monolithic telecommunications workflows toward scalable microservices.',
   },
 ]
 
@@ -111,13 +111,13 @@ export const skillGroups: SkillGroup[] = [
   {
     number: '01',
     category: 'Languages',
-    title: 'Core code',
+    title: 'Core languages',
     skills: ['Python', 'Java', 'TypeScript', 'JavaScript', 'SQL'],
   },
   {
     number: '02',
     category: 'Backend',
-    title: 'Systems',
+    title: 'Backend engineering',
     skills: [
       'Django',
       'Flask',
@@ -135,7 +135,7 @@ export const skillGroups: SkillGroup[] = [
   {
     number: '03',
     category: 'AI & ML',
-    title: 'Intelligence',
+    title: 'Applied AI',
     skills: [
       'Generative AI',
       'LLMs',
@@ -151,13 +151,13 @@ export const skillGroups: SkillGroup[] = [
   {
     number: '04',
     category: 'Frontend',
-    title: 'Interfaces',
+    title: 'Product interfaces',
     skills: ['React', 'Next.js', 'Vue.js', 'Angular', 'HTML', 'CSS'],
   },
   {
     number: '05',
     category: 'Platform',
-    title: 'Cloud & Ops',
+    title: 'Cloud delivery',
     skills: [
       'AWS',
       'Microsoft Azure',
@@ -172,7 +172,7 @@ export const skillGroups: SkillGroup[] = [
   {
     number: '06',
     category: 'Data',
-    title: 'Persistence',
+    title: 'Data systems',
     skills: [
       'PostgreSQL',
       'Oracle Database',
