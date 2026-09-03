@@ -1,18 +1,8 @@
-import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useCallback, useMemo, useState, type ReactNode } from 'react'
 import { GameContext, type GameMode } from './gameStore'
 
-const LEGACY_GAME_PROMPT_STORAGE_KEY = 'binith-portfolio-f1-prompt-seen'
-
 export function GameProvider({ children }: { children: ReactNode }) {
-  const [mode, setMode] = useState<GameMode>('prompt')
-
-  useEffect(() => {
-    try {
-      window.localStorage.removeItem(LEGACY_GAME_PROMPT_STORAGE_KEY)
-    } catch {
-      // Storage cleanup is optional.
-    }
-  }, [])
+  const [mode, setMode] = useState<GameMode>('minimized')
 
   const startGame = useCallback(() => {
     setMode('instructions')
