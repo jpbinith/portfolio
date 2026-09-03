@@ -5,8 +5,8 @@
   bottom: clamp(1rem, 2.2vw, 2.25rem);
   display: grid;
   justify-items: center;
-  gap: .5rem;
-  padding: .75rem;
+  gap: .65rem;
+  padding: .85rem 1rem .9rem;
   color: var(--text);
   background: color-mix(in srgb, var(--panel) 70%, transparent);
   border: 1px solid var(--line);
@@ -38,70 +38,83 @@
   letter-spacing: .07em;
 }
 
-.f1-car-controls__pad {
+.f1-car-controls__joystick {
+  position: relative;
   display: grid;
-  grid-template: repeat(2, 2.7rem) / repeat(3, 2.7rem);
-  gap: .3rem;
-}
-
-.f1-car-controls__button {
-  display: grid;
-  width: 2.7rem;
-  height: 2.7rem;
+  width: 8rem;
+  aspect-ratio: 1;
   padding: 0;
   place-items: center;
   color: var(--text);
-  background: color-mix(in srgb, var(--panel-strong) 82%, transparent);
+  background:
+    radial-gradient(circle at 38% 32%, rgba(255, 255, 255, .045), transparent 28%),
+    color-mix(in srgb, var(--ink) 78%, transparent);
   border: 1px solid var(--line);
-  border-radius: .8rem;
-  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .025), inset 0 .5rem 1.5rem rgba(0, 0, 0, .25);
+  cursor: grab;
   touch-action: none;
-  transition: color .15s ease, background .15s ease, border-color .15s ease, transform .15s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.f1-car-controls__button--up {
-  grid-column: 2;
-  grid-row: 1;
+.f1-car-controls__joystick::before,
+.f1-car-controls__joystick::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
 }
 
-.f1-car-controls__button--left {
-  grid-column: 1;
-  grid-row: 2;
+.f1-car-controls__joystick::before {
+  inset: 20%;
+  border: 1px solid color-mix(in srgb, var(--line) 74%, transparent);
 }
 
-.f1-car-controls__button--down {
-  grid-column: 2;
-  grid-row: 2;
-}
-
-.f1-car-controls__button--right {
-  grid-column: 3;
-  grid-row: 2;
-}
-
-.f1-car-controls__button:hover,
-.f1-car-controls__button:focus-visible {
-  color: var(--ink-static);
+.f1-car-controls__joystick::after {
+  width: .32rem;
+  height: .32rem;
   background: var(--accent);
+  box-shadow: 0 0 .7rem rgba(var(--accent-rgb), .7);
+}
+
+.f1-car-controls__joystick:focus-visible {
   border-color: var(--accent);
+  box-shadow: 0 0 0 .25rem rgba(var(--accent-rgb), .14), inset 0 .5rem 1.5rem rgba(0, 0, 0, .25);
   outline: none;
 }
 
-.f1-car-controls__button:active {
-  color: var(--ink-static);
-  background: var(--accent);
-  border-color: var(--accent);
-  transform: scale(.9);
+.f1-car-controls__joystick.is-steering {
+  cursor: grabbing;
 }
 
-.f1-car-controls__button svg {
-  width: 1.15rem;
-  height: 1.15rem;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.f1-car-controls__thumb {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 3.45rem;
+  aspect-ratio: 1;
+  place-items: center;
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255, 255, 255, .16), transparent 32%),
+    color-mix(in srgb, var(--panel-strong) 92%, var(--accent) 8%);
+  border: 1px solid color-mix(in srgb, var(--line) 75%, var(--accent) 25%);
+  border-radius: 50%;
+  box-shadow: 0 .5rem 1.1rem rgba(0, 0, 0, .38), inset 0 1px rgba(255, 255, 255, .08);
+  pointer-events: none;
+  transition: box-shadow .15s ease, transform .18s cubic-bezier(.2, .8, .2, 1);
+}
+
+.f1-car-controls__thumb span {
+  width: .65rem;
+  aspect-ratio: 1;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 .75rem rgba(var(--accent-rgb), .65);
+}
+
+.f1-car-controls__joystick.is-steering .f1-car-controls__thumb {
+  box-shadow: 0 .7rem 1.3rem rgba(0, 0, 0, .42), 0 0 0 .18rem rgba(var(--accent-rgb), .11);
+  transition-duration: .15s, 0s;
 }
 
 @keyframes f1-controls-enter {
@@ -115,24 +128,25 @@
   .f1-car-controls {
     right: max(.75rem, env(safe-area-inset-right));
     bottom: max(.75rem, env(safe-area-inset-bottom));
-    padding: .6rem;
+    padding: .7rem .8rem .75rem;
     border-radius: 1rem;
   }
 
-  .f1-car-controls__pad {
-    grid-template: repeat(2, 2.55rem) / repeat(3, 2.55rem);
-    gap: .25rem;
+  .f1-car-controls__joystick {
+    width: 7rem;
   }
 
-  .f1-car-controls__button {
-    width: 2.55rem;
-    height: 2.55rem;
-    border-radius: .7rem;
+  .f1-car-controls__thumb {
+    width: 3rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .f1-car-controls {
     animation: none;
+  }
+
+  .f1-car-controls__thumb {
+    transition: none;
   }
 }
