@@ -1,0 +1,281 @@
+.game-prompt-backdrop {
+  position: fixed;
+  z-index: 3000;
+  inset: 0;
+  display: grid;
+  padding: clamp(1rem, 4vw, 2.5rem);
+  place-items: center;
+  background: rgba(5, 5, 6, .72);
+  backdrop-filter: blur(16px);
+  animation: game-prompt-backdrop-in .3s ease-out both;
+}
+
+.game-prompt {
+  display: grid;
+  width: min(100%, 54rem);
+  max-height: calc(100svh - 2rem);
+  overflow: auto;
+  grid-template-columns: minmax(15rem, .8fr) minmax(20rem, 1.2fr);
+  color: var(--text);
+  background: color-mix(in srgb, var(--panel-strong) 94%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 1.75rem;
+  box-shadow: 0 35px 100px rgba(0, 0, 0, .45);
+  animation: game-prompt-in .35s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.game-prompt__visual {
+  position: relative;
+  min-height: 27rem;
+  overflow: hidden;
+  background: var(--ink);
+  border-radius: 1.65rem 0 0 1.65rem;
+}
+
+.game-prompt__visual::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(8, 8, 9, .08), transparent 42%, rgba(8, 8, 9, .76)),
+    linear-gradient(90deg, transparent 55%, rgba(8, 8, 9, .28));
+  pointer-events: none;
+}
+
+.game-prompt__visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 52% center;
+  filter: saturate(.9) contrast(1.08) brightness(.8);
+  transform: scale(1.04);
+}
+
+.game-prompt__status {
+  position: absolute;
+  z-index: 2;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  padding: .42rem .65rem;
+  color: var(--accent);
+  background: rgba(0, 0, 0, .42);
+  border: 1px solid rgba(var(--accent-rgb), .25);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: .58rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.game-prompt__content {
+  display: flex;
+  padding: clamp(2rem, 5vw, 4rem);
+  flex-direction: column;
+  justify-content: center;
+}
+
+.game-prompt__eyebrow {
+  color: var(--accent-text);
+  font-family: var(--mono);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+.game-prompt h2 {
+  margin: 1rem 0 0;
+  font-family: var(--display);
+  font-size: clamp(2.35rem, 5vw, 4.5rem);
+  letter-spacing: -.055em;
+  line-height: .9;
+  text-transform: uppercase;
+}
+
+.game-prompt__content > p:not(.game-prompt__note) {
+  margin: 1.5rem 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.game-prompt__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .7rem;
+  margin-top: 2rem;
+}
+
+.game-prompt__actions button {
+  min-height: 3.15rem;
+  padding: .75rem 1.2rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.game-prompt__actions button:hover,
+.game-prompt__actions button:focus-visible {
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.game-prompt__start {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  color: var(--ink-static);
+  background: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.game-prompt__start svg {
+  width: .9rem;
+  fill: currentColor;
+}
+
+.game-prompt__skip {
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--line);
+  view-transition-name: f1-game-launcher;
+}
+
+::view-transition-group(root) {
+  animation-duration: .42s;
+}
+
+::view-transition-group(f1-game-launcher) {
+  z-index: 4000;
+  animation-duration: .78s;
+  animation-timing-function: cubic-bezier(.16, 1, .3, 1);
+}
+
+::view-transition-image-pair(f1-game-launcher) {
+  isolation: auto;
+}
+
+::view-transition-old(f1-game-launcher),
+::view-transition-new(f1-game-launcher) {
+  height: 100%;
+  overflow: clip;
+  border-radius: 999px;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(f1-game-launcher) {
+  animation: f1-launcher-old .48s ease-in both;
+}
+
+::view-transition-new(f1-game-launcher) {
+  animation: f1-launcher-new .78s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+.game-prompt__note {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: .58rem;
+  letter-spacing: .04em;
+  line-height: 1.5;
+}
+
+@keyframes game-prompt-backdrop-in {
+  from { opacity: 0; }
+}
+
+@keyframes game-prompt-in {
+  from {
+    opacity: 0;
+    transform: translateY(1rem) scale(.98);
+  }
+}
+
+@keyframes f1-launcher-old {
+  to {
+    opacity: .18;
+    transform: rotate(-6deg) scale(.6);
+  }
+}
+
+@keyframes f1-launcher-new {
+  from {
+    opacity: .3;
+    filter: drop-shadow(0 0 1.25rem rgba(var(--accent-rgb), .8));
+    transform: rotate(8deg) scale(.65);
+  }
+
+  to {
+    opacity: 1;
+    filter: drop-shadow(0 0 0 rgba(var(--accent-rgb), 0));
+    transform: rotate(0) scale(1);
+  }
+}
+
+@media (max-width: 680px) {
+  .game-prompt-backdrop {
+    padding: .75rem;
+    align-items: end;
+  }
+
+  .game-prompt {
+    grid-template-columns: 1fr;
+    border-radius: 1.4rem;
+  }
+
+  .game-prompt__visual {
+    min-height: 10rem;
+    border-radius: 1.3rem 1.3rem 0 0;
+  }
+
+  .game-prompt__visual img {
+    object-position: 50% 54%;
+    transform: scale(1.02);
+  }
+
+  .game-prompt__status {
+    bottom: .8rem;
+    left: .8rem;
+  }
+
+  .game-prompt__content {
+    padding: 1.5rem;
+  }
+
+  .game-prompt h2 {
+    font-size: clamp(2.15rem, 12vw, 3.35rem);
+  }
+
+  .game-prompt__content > p:not(.game-prompt__note) {
+    margin-top: 1rem;
+    font-size: .92rem;
+  }
+
+  .game-prompt__actions {
+    margin-top: 1.35rem;
+  }
+
+  .game-prompt__actions button {
+    flex: 1 1 9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-prompt-backdrop,
+  .game-prompt {
+    animation: none;
+  }
+
+  ::view-transition-group(root),
+  ::view-transition-group(f1-game-launcher),
+  ::view-transition-old(f1-game-launcher),
+  ::view-transition-new(f1-game-launcher) {
+    animation-duration: .01ms;
+  }
+}

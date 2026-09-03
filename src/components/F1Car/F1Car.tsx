@@ -32,7 +32,12 @@ function disposeModel(model: THREE.Object3D) {
   })
 }
 
-export function F1Car() {
+type F1CarProps = {
+  autoStart?: boolean
+  onStop?: () => void
+}
+
+export function F1Car({ autoStart = false, onStop }: F1CarProps) {
   const stageRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const reducedMotion = useReducedMotion()
@@ -40,10 +45,26 @@ export function F1Car() {
   const [hasError, setHasError] = useState(!modelUrl)
   const {
     isDriving,
+    startDriving,
+    stopDriving,
     toggleDriving,
     pressDirection,
     releaseDirection,
-  } = useCarDrive(stageRef, isReady && !hasError)
+  } = useCarDrive(stageRef, isReady && !hasError, onStop)
+
+  useEffect(() => {
+    if (autoStart && isReady && !hasError && !isDriving) startDriving()
+  }, [autoStart, hasError, isDriving, isReady, startDriving])
+
+  const handleDriveToggle = () => {
+    if (isDriving && onStop) {
+      stopDriving()
+      onStop()
+      return
+    }
+
+    toggleDriving()
+  }
 
   useEffect(() => {
     const stage = stageRef.current
@@ -212,7 +233,14 @@ export function F1Car() {
           aria-label={isDriving ? 'Stop driving the F1 car' : 'Drive the F1 car with the W A S D keys'}
           aria-describedby={isDriving ? undefined : 'f1-car-drive-help'}
           aria-pressed={isDriving}
-          onClick={toggleDriving}
+          onPointerDown={(event) => {
+            if (!isDriving) return
+
+            event.preventDefault()
+            event.stopPropagation()
+            handleDriveToggle()
+          }}
+          onClick={handleDriveToggle}
         >
           {isDriving ? (
             <svg viewBox="0 0 24 24" aria-hidden="true">

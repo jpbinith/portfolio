@@ -113,7 +113,21 @@
 
 @media (max-width: 980px) {
   .f1-car-controls {
-    display: none;
+    right: max(.75rem, env(safe-area-inset-right));
+    bottom: max(.75rem, env(safe-area-inset-bottom));
+    padding: .6rem;
+    border-radius: 1rem;
+  }
+
+  .f1-car-controls__pad {
+    grid-template: repeat(2, 2.55rem) / repeat(3, 2.55rem);
+    gap: .25rem;
+  }
+
+  .f1-car-controls__button {
+    width: 2.55rem;
+    height: 2.55rem;
+    border-radius: .7rem;
   }
 }
 

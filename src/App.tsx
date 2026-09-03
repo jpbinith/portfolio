@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import { About } from './components/About/About'
 import { Contact } from './components/Contact/Contact'
 import { Experience } from './components/Experience/Experience'
+import { F1GamePrompt } from './components/F1GamePrompt/F1GamePrompt'
+import { F1DrivingIntro } from './components/F1DrivingIntro/F1DrivingIntro'
 import { Header } from './components/Header/Header'
 import { Hero } from './components/Hero/Hero'
 import { Learning } from './components/Learning/Learning'
@@ -26,6 +28,8 @@ function App() {
   return (
     <>
       <a className="skip-link" href="#main">Skip to content</a>
+      <F1GamePrompt />
+      <F1DrivingIntro />
       <ScrollEffects />
       <Header />
 

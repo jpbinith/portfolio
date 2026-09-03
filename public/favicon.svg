@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path
+    d="M20 5h24c9 0 15 7 15 16v21c0 9-7 15-16 15H14c-5 0-8-3-8-8V21C6 12 11 7 20 5Z"
+    fill="#cbff4a"
+    transform="rotate(-5 32 32)"
+  />
+  <text
+    x="32"
+    y="37"
+    fill="#0a0a0b"
+    font-family="Arial Black, Arial, sans-serif"
+    font-size="17"
+    font-weight="900"
+    text-anchor="middle"
+  >BJ</text>
+</svg>

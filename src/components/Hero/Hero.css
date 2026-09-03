@@ -43,12 +43,18 @@
 }
 
 .availability-dot {
+  flex: 0 0 auto;
   width: .5rem;
   height: .5rem;
   background: var(--accent);
   border-radius: 50%;
   box-shadow: 0 0 0 .25rem rgba(var(--accent-rgb), .12);
   animation: availability-pulse 2s ease-in-out infinite;
+}
+
+.availability-text--mobile,
+.hero-copy--mobile {
+  display: none;
 }
 
 @keyframes availability-pulse {
@@ -138,6 +144,7 @@
 @media (max-width: 980px) {
   .hero-grid {
     grid-template-columns: 1fr;
+    gap: clamp(1.5rem, 5vw, 2.5rem);
   }
 
   .hero-content {
@@ -148,18 +155,67 @@
 @media (max-width: 680px) {
   .hero {
     min-height: auto;
-    padding-top: 8rem;
+    padding-top: 6.75rem;
+    padding-bottom: 2.5rem;
+    align-items: start;
+  }
+
+  .availability {
+    margin-bottom: 1.25rem;
+    padding: .42rem .62rem;
+    gap: .5rem;
+    font-size: .58rem;
+    letter-spacing: .065em;
+  }
+
+  .availability-text--desktop,
+  .hero-copy--desktop {
+    display: none;
+  }
+
+  .availability-text--mobile,
+  .hero-copy--mobile {
+    display: block;
   }
 
   .hero h1 {
-    font-size: clamp(3rem, 15.5vw, 5.6rem);
+    font-size: clamp(3.1rem, 16vw, 5.25rem);
+    line-height: .84;
+  }
+
+  .hero-copy {
+    margin-top: 1.3rem;
+    font-size: .98rem;
+    line-height: 1.55;
+  }
+
+  .hero-actions {
+    display: grid;
+    margin-top: 1.5rem;
+    grid-template-columns: minmax(0, 1fr) 3.25rem 3.25rem;
+    gap: .6rem;
+  }
+
+  .hero-action--primary {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .hero-action--secondary {
+    min-width: 0;
+  }
+
+  .hero-actions .button,
+  .hero-actions .icon-link {
+    min-height: 3.25rem;
+  }
+
+  .hero-actions .icon-link {
+    width: 3.25rem;
+    height: 3.25rem;
   }
 
   .hero-foot {
-    align-items: flex-end;
-  }
-
-  .hero-foot > span:first-child {
-    max-width: 15rem;
+    display: none;
   }
 }

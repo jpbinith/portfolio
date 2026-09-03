@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { navigation } from '../../data/portfolio'
+import { useGame } from '../../context/useGame'
 import { useTheme } from '../../context/useTheme'
 import { Button } from '../Button/Button'
 import { MoonIcon, SunIcon } from '../Button/Icons'
@@ -7,6 +8,7 @@ import './Header.css'
 
 export function Header() {
   const { theme, toggleTheme } = useTheme()
+  const { mode: gameMode, startGame } = useGame()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('')
@@ -56,23 +58,61 @@ export function Header() {
           <span>Binith Jayasinghe</span>
         </a>
 
-        <ul className={`nav-links${isMenuOpen ? ' is-open' : ''}`} id="nav-links">
-          {navigation.map(({ label, href }) => (
-            <li key={href}>
-              <a
-                className={`nav-link${activeSection === href.slice(1) ? ' active' : ''}`}
-                href={href}
-                onClick={closeMenu}
+        <div className="header-navigation">
+          {gameMode === 'minimized' && (
+            <button
+              className="game-launcher"
+              type="button"
+              aria-label="Start the interactive F1 driving mode"
+              title="Start F1 driving mode"
+              onClick={() => {
+                closeMenu()
+                startGame()
+              }}
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 5.8v12.4a1 1 0 0 0 1.55.84l9-6.2a1 1 0 0 0 0-1.68l-9-6.2A1 1 0 0 0 8 5.8Z" />
+              </svg>
+              <span className="game-launcher__label">Drive</span>
+            </button>
+          )}
+
+          <ul className={`nav-links${isMenuOpen ? ' is-open' : ''}`} id="nav-links">
+            {navigation.map(({ label, href }) => (
+              <li key={href}>
+                <a
+                  className={`nav-link${activeSection === href.slice(1) ? ' active' : ''}`}
+                  href={href}
+                  onClick={closeMenu}
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+            <li className="nav-links__utility">
+              <button
+                className="nav-utility"
+                type="button"
+                onClick={toggleTheme}
               >
-                {label}
+                <span className="nav-utility__icon" aria-hidden="true">
+                  {theme === 'dark' ? <MoonIcon /> : <SunIcon />}
+                </span>
+                Use {theme === 'dark' ? 'light' : 'dark'} theme
+              </button>
+            </li>
+            <li className="nav-links__utility">
+              <a className="nav-utility" href="#contact" onClick={closeMenu}>
+                <span className="nav-utility__dot" aria-hidden="true" />
+                Contact me
               </a>
             </li>
-          ))}
-        </ul>
+          </ul>
+        </div>
 
         <div className="nav-actions">
           <button
-            className="theme-toggle"
+            className="theme-toggle theme-toggle--desktop"
             type="button"
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} colour theme`}
             title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} colour theme`}

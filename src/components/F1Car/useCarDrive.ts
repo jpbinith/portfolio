@@ -24,21 +24,30 @@ type Position = {
   y: number
 }
 
-export function useCarDrive(stageRef: RefObject<HTMLDivElement | null>, enabled: boolean) {
+export function useCarDrive(
+  stageRef: RefObject<HTMLDivElement | null>,
+  enabled: boolean,
+  onCancel?: () => void,
+) {
   const [isDriving, setIsDriving] = useState(false)
-  const parkedBoundsRef = useRef<DOMRect | null>(null)
   const activeDirectionsRef = useRef(new Set<DriveDirection>())
 
-  const toggleDriving = useCallback(() => {
-    if (!enabled) return
-
-    if (!isDriving) {
-      parkedBoundsRef.current = stageRef.current?.getBoundingClientRect() ?? null
-    }
+  const startDriving = useCallback(() => {
+    if (!enabled || isDriving) return
 
     activeDirectionsRef.current.clear()
-    setIsDriving((current) => !current)
-  }, [enabled, isDriving, stageRef])
+    setIsDriving(true)
+  }, [enabled, isDriving])
+
+  const stopDriving = useCallback(() => {
+    activeDirectionsRef.current.clear()
+    setIsDriving(false)
+  }, [])
+
+  const toggleDriving = useCallback(() => {
+    if (isDriving) stopDriving()
+    else startDriving()
+  }, [isDriving, startDriving, stopDriving])
 
   const pressDirection = useCallback((direction: DriveDirection) => {
     if (isDriving) activeDirectionsRef.current.add(direction)
@@ -52,14 +61,13 @@ export function useCarDrive(stageRef: RefObject<HTMLDivElement | null>, enabled:
     const stage = stageRef.current
     if (!stage || !isDriving || !enabled) return
 
-    const parkedBounds = parkedBoundsRef.current ?? stage.getBoundingClientRect()
     const stageWidth = stage.offsetWidth
     const stageHeight = stage.offsetHeight
     const carHalfWidth = Math.max(38, stageWidth * .09 * DRIVE_SCALE)
     const carHalfHeight = Math.max(76, stageHeight * .46 * DRIVE_SCALE)
     const position: Position = {
-      x: parkedBounds.left + parkedBounds.width / 2,
-      y: parkedBounds.top + parkedBounds.height / 2,
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2,
     }
     const activeDirections = activeDirectionsRef.current
     const previousScrollBehavior = document.documentElement.style.scrollBehavior
@@ -81,7 +89,8 @@ export function useCarDrive(stageRef: RefObject<HTMLDivElement | null>, enabled:
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.code === 'Escape') {
         event.preventDefault()
-        setIsDriving(false)
+        stopDriving()
+        onCancel?.()
         return
       }
 
@@ -171,7 +180,14 @@ export function useCarDrive(stageRef: RefObject<HTMLDivElement | null>, enabled:
       stage.style.removeProperty('transform')
       stage.style.removeProperty('--drive-heading')
     }
-  }, [enabled, isDriving, stageRef])
+  }, [enabled, isDriving, onCancel, stageRef, stopDriving])
 
-  return { isDriving, toggleDriving, pressDirection, releaseDirection }
+  return {
+    isDriving,
+    startDriving,
+    stopDriving,
+    toggleDriving,
+    pressDirection,
+    releaseDirection,
+  }
 }

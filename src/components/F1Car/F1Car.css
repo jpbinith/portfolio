@@ -303,7 +303,27 @@
 
 @media (max-width: 980px) {
   .f1-car {
-    display: none;
+    position: fixed;
+    top: 5.5rem;
+    left: 50%;
+    display: block;
+    width: min(30rem, 100vw);
+    height: clamp(10rem, 38vw, 13rem);
+    opacity: .92;
+    transform: translateX(-50%);
+  }
+
+  .f1-car.is-driving {
+    top: 0;
+    left: 0;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 680px) {
+  .f1-car {
+    width: min(25rem, 100vw);
+    height: clamp(10rem, 48vw, 12rem);
   }
 }
 

@@ -1,0 +1,129 @@
+.driving-intro {
+  position: fixed;
+  z-index: 3000;
+  inset: 0;
+  display: grid;
+  padding: clamp(1.5rem, 7vw, 6rem);
+  color: var(--text);
+  background: color-mix(in srgb, var(--ink) 58%, transparent);
+  place-items: center;
+  text-align: center;
+  backdrop-filter: blur(22px) saturate(.8);
+  animation: driving-intro-in .35s ease-out both;
+}
+
+.driving-intro::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: .55;
+  background:
+    radial-gradient(circle at 50% 46%, rgba(var(--accent-rgb), .12), transparent 28%),
+    linear-gradient(115deg, transparent 28%, rgba(var(--accent-rgb), .035) 50%, transparent 72%);
+  pointer-events: none;
+}
+
+.driving-intro__content {
+  position: relative;
+  width: min(100%, 64rem);
+}
+
+.driving-intro__eyebrow {
+  color: var(--accent-text);
+  font-family: var(--mono);
+  font-size: clamp(.62rem, 1vw, .75rem);
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.driving-intro h2 {
+  max-width: 58rem;
+  margin: 1.2rem auto 0;
+  font-family: var(--display);
+  font-size: clamp(3.25rem, 9vw, 8.5rem);
+  letter-spacing: -.07em;
+  line-height: .82;
+  text-transform: uppercase;
+}
+
+.driving-intro__lead {
+  margin: clamp(2rem, 5vw, 3.5rem) 0 0;
+  color: var(--muted);
+  font-size: clamp(1.1rem, 2vw, 1.55rem);
+}
+
+.driving-intro__lead strong {
+  color: var(--accent-text);
+  font-family: var(--mono);
+  font-size: .9em;
+  letter-spacing: .14em;
+}
+
+.driving-intro__advice {
+  max-width: 42rem;
+  margin: 1rem auto 0;
+  color: var(--muted);
+  font-size: clamp(.85rem, 1.3vw, 1rem);
+  line-height: 1.65;
+}
+
+.driving-intro button {
+  display: inline-flex;
+  min-height: 3.2rem;
+  margin-top: 2rem;
+  padding: .75rem 1.35rem;
+  align-items: center;
+  gap: .65rem;
+  color: var(--ink-static);
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: .7rem;
+  font-weight: 900;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+
+.driving-intro button:hover,
+.driving-intro button:focus-visible {
+  box-shadow: 0 0 0 .5rem rgba(var(--accent-rgb), .14);
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.driving-intro button svg {
+  width: 1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@keyframes driving-intro-in {
+  from { opacity: 0; }
+}
+
+@media (max-width: 680px) {
+  .driving-intro {
+    padding: 1.5rem;
+  }
+
+  .driving-intro h2 {
+    font-size: clamp(3.1rem, 17vw, 5.5rem);
+  }
+
+  .driving-intro__advice {
+    max-width: 22rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .driving-intro {
+    animation: none;
+  }
+}
