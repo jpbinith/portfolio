@@ -85,14 +85,6 @@ img {
   -webkit-text-stroke: 1px var(--outline);
 }
 
-:root[data-theme='light'] .outline-text {
-  color: rgba(10, 10, 11, .025);
-}
-
-:root[data-theme='light'] .section {
-  padding-block: clamp(5.5rem, 9vw, 8rem);
-}
-
 .reveal {
   opacity: 0;
   transform: translateY(36px);

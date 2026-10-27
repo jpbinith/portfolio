@@ -4,6 +4,7 @@
   --paper: #f2f0e9;
   --panel: #141416;
   --panel-2: #1b1b1e;
+  --panel-strong: #1b1b1e;
   --text: #f2f0e9;
   --muted: #a5a49f;
   --line: rgba(242, 240, 233, .15);
@@ -31,21 +32,23 @@
 }
 
 :root[data-theme='light'] {
-  --ink: #dfe3d7;
-  --paper: #0a0a0b;
-  --panel: #eeecdf;
-  --panel-2: #d1d6ca;
-  --text: #111113;
-  --muted: #4f4d48;
-  --line: rgba(10, 10, 11, .22);
+  --ink: #e8edf2;
+  --paper: #0a0d12;
+  --panel: #f8fafc;
+  --panel-2: #d8e0e7;
+  --panel-strong: #ffffff;
+  --text: #0a0d12;
+  --muted: #525d68;
+  --line: rgba(10, 13, 18, .18);
+  --accent: #9ad66d;
   --accent-text: #456400;
-  --outline: #686660;
-  --header: rgba(226, 230, 219, .92);
-  --shadow: 0 24px 70px rgba(45, 39, 24, .16);
+  --accent-rgb: 154, 214, 109;
+  --outline: #8c99a5;
+  --header: rgba(242, 246, 249, .9);
+  --shadow: 0 30px 80px rgba(19, 34, 49, .18);
   --page-background:
-    radial-gradient(circle at 8% 5%, rgba(144, 124, 255, .19), transparent 34rem),
-    radial-gradient(circle at 94% 27%, rgba(var(--accent-rgb), .16), transparent 34rem),
-    radial-gradient(circle at 18% 72%, rgba(255, 122, 69, .09), transparent 28rem),
-    linear-gradient(135deg, #dde1d8 0%, #d6ded2 48%, #e4dbcf 100%);
+    radial-gradient(circle at 9% 3%, rgba(144, 124, 255, .09), transparent 28rem),
+    radial-gradient(circle at 92% 24%, rgba(var(--accent-rgb), .06), transparent 30rem),
+    var(--ink);
   --noise-opacity: .025;
 }

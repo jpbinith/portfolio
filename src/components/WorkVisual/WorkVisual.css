@@ -11,10 +11,6 @@
   transition: transform .25s ease;
 }
 
-:root[data-theme='light'] .work-visual {
-  background: #18181b;
-}
-
 .work-visual::before {
   content: '';
   position: absolute;

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import { useTheme } from '../../context/useTheme'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
 import { F1CarControls } from './F1CarControls'
 import { useCarDrive } from './useCarDrive'
@@ -40,6 +41,7 @@ type F1CarProps = {
 export function F1Car({ autoStart = false, onStop }: F1CarProps) {
   const stageRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const { theme } = useTheme()
   const reducedMotion = useReducedMotion()
   const [isReady, setIsReady] = useState(false)
   const [hasError, setHasError] = useState(!modelUrl)
@@ -115,7 +117,10 @@ export function F1Car({ autoStart = false, onStop }: F1CarProps) {
     keyLight.position.set(4, 6, 6)
     scene.add(keyLight)
 
-    const accentLight = new THREE.DirectionalLight(0xcbff4a, 2.8)
+    const accentColor = getComputedStyle(document.documentElement)
+      .getPropertyValue('--accent')
+      .trim() || '#9ad66d'
+    const accentLight = new THREE.DirectionalLight(accentColor, 2.8)
     accentLight.position.set(-5, 2, -3)
     scene.add(accentLight)
 
@@ -202,7 +207,7 @@ export function F1Car({ autoStart = false, onStop }: F1CarProps) {
       if (loadedModel) disposeModel(loadedModel)
       renderer.dispose()
     }
-  }, [reducedMotion])
+  }, [reducedMotion, theme])
 
   return (
     <>

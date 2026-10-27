@@ -286,14 +286,6 @@
   100% { opacity: 0; transform: translateY(-2.2rem) scaleY(1.05); }
 }
 
-:root[data-theme='light'] .f1-car {
-  filter: drop-shadow(0 28px 34px rgba(45, 39, 24, .22));
-}
-
-:root[data-theme='light'] .f1-car-effects {
-  mix-blend-mode: normal;
-}
-
 @media (max-width: 1180px) {
   .f1-car {
     width: 34rem;
